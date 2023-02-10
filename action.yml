@@ -23,19 +23,19 @@ runs:
   steps:
     - uses: actions/checkout@v3
     - uses: actions/setup-go@v3
-      if: ${{ inputs.go-version }} == 'mod'
+      if: ${{ inputs.go-version == 'mod' }}
       with:
         go-version-file: './go.mod'
     - uses: actions/setup-go@v3
-      if: ${{ inputs.go-version }} != 'mod'
+      if: ${{ inputs.go-version != 'mod' }}
       with:
         go-version: ${{ inputs.go-version }}
     - name: golangci-lint
-      if: ${{ inputs.skip-lint }} == 'false'
+      if: ${{ inputs.skip-lint == 'false' }}
       uses: golangci/golangci-lint-action@v3
       with:
         version: ${{ inputs.linter-version }}
     - name: scan licenses
       shell: bash
-      if: ${{ inputs.skip-scan }} == 'false'
+      if: ${{ inputs.skip-scan == 'false' }}
       run: ${{ github.action_path }}/scanner/scan.sh
