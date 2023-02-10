@@ -1,6 +1,10 @@
 name: "Setup Go"
 description: "Setup Go installs Go environment, lints and scans the project licenses."
 inputs:
+  go-version:
+    description: "go version (default: version defined in root mod-file)"
+    required: false
+    default: "mod"
   linter-version:
     description: "golang-ci-lint version"
     required: false
@@ -18,6 +22,14 @@ runs:
   using: "composite"
   steps:
     - uses: actions/checkout@v3
+    - uses: actions/setup-go@v3
+      if: ${{ inputs.go-version }} == 'mod'
+      with:
+        go-version-file: './go.mod'
+    - uses: actions/setup-go@v3
+      if: ${{ inputs.go-version }} != 'mod'
+      with:
+        go-version: ${{ inputs.go-version }}
     - name: golangci-lint
       if: ${{ inputs.skip-lint }} == 'false'
       uses: golangci/golangci-lint-action@v3
