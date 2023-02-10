@@ -7,5 +7,7 @@ tmpfile=$(mktemp /tmp/findy-scan.XXXXXX)
 
 go build -o "$tmpfile"
 
+CURRENT_DIR=$(dirname "$BASH_SOURCE")
+
 # subscript does the scanning and cleanup
-$GITHUB_ACTION_PATH/scanner/lichen.sh "$tmpfile" "$@"
+$CURRENT_DIR/lichen.sh "$tmpfile" "$@"
