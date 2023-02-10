@@ -1,0 +1,29 @@
+name: "Setup Go"
+description: "Setup Go installs Go environment, lints and scans the project licenses."
+inputs:
+  linter-version:
+    description: "golang-ci-lint version"
+    required: false
+    default: "v1.51.1"
+  skip-lint:
+    description: "Skips linting when true"
+    required: false
+    default: "false"
+  skip-scan:
+    description: "Skips scanning when true"
+    required: false
+    default: "false"
+
+runs:
+  using: "composite"
+  steps:
+    - uses: actions/checkout@v3
+    - name: golangci-lint
+      if: ${{ inputs.skip-lint }} == 'false'
+      uses: golangci/golangci-lint-action@v3
+      with:
+        version: ${{ inputs.linter-version }}
+    - name: scan licenses
+      shell: bash
+      if: ${{ inputs.skip-scan }} == 'false'
+      run: ${{ github.action_path }}/scanner/scan.sh
