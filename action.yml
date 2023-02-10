@@ -5,6 +5,10 @@ inputs:
     description: "go version (default: version defined in root mod-file)"
     required: false
     default: "mod"
+  linter-config-path:
+    description: "golang-ci-lint config path"
+    required: false
+    default: "$GITHUB_ACTION_PATH/linter/.golangci.yml"
   linter-version:
     description: "golang-ci-lint version"
     required: false
@@ -35,6 +39,7 @@ runs:
       uses: golangci/golangci-lint-action@v3
       with:
         version: ${{ inputs.linter-version }}
+        args: --config=${{ inputs.linter-config-path }}
     - name: scan licenses
       shell: bash
       if: ${{ inputs.skip-scan == 'false' }}
