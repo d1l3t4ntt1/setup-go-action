@@ -39,7 +39,7 @@ runs:
       uses: golangci/golangci-lint-action@v3
       with:
         version: ${{ inputs.linter-version }}
-        args: --config=${{ inputs.linter-config-path }}
+        args: --config=${{ inputs.linter-config-path }} --timeout=5m
     - name: scan licenses
       shell: bash
       if: ${{ inputs.skip-scan == 'false' }}
