@@ -13,6 +13,10 @@ inputs:
     description: "golang-ci-lint version"
     required: false
     default: "v1.51.1"
+  setup-script:
+    description: "additional setup before linting"
+    required: false
+    default: "echo 'no additional setup needed'"
   skip-lint:
     description: "Skips linting when true"
     required: false
@@ -34,6 +38,9 @@ runs:
       if: ${{ inputs.go-version != 'mod' }}
       with:
         go-version: ${{ inputs.go-version }}
+    - name: additional
+      shell: bash
+      run: eval ${{ inputs.setup-script }}
     - name: golangci-lint
       if: ${{ inputs.skip-lint == 'false' }}
       uses: golangci/golangci-lint-action@v3
