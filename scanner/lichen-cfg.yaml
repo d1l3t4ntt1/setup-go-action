@@ -81,3 +81,8 @@ allow:
   - "Xerox"
   - "xnet"
   - "zlib"
+
+override:
+  - path: "github.com/multiformats/go-base36"
+    version: "v0.1.0"
+    licenses: ["Apache-2.0"] # SPDX-License-Identifier: Apache-2.0 OR MIT
