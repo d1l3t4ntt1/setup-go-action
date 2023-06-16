@@ -12,7 +12,7 @@ inputs:
   linter-version:
     description: "golang-ci-lint version"
     required: false
-    default: "v1.52.2"
+    default: "v1.53.3"
   setup-script:
     description: "additional setup before linting"
     required: false
