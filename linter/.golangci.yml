@@ -72,7 +72,7 @@ linters:
     - errorlint
     - execinquery
     - exhaustive
-    - exhaustruct
+#    - exhaustruct
     - exportloopref
     - forbidigo
     - forcetypeassert
@@ -99,6 +99,7 @@ linters:
     - goprintffuncname
     - gosec
     - gosimple
+    - gosmopolitan
     - govet
     - grouper
     - importas
@@ -109,6 +110,7 @@ linters:
     - loggercheck
     - maintidx
     - makezero
+    - mirror
     - misspell
     - musttag
     - nakedret
@@ -118,7 +120,7 @@ linters:
     - nlreturn
     - noctx
     - nolintlint
-#    - nonamedreturns
+    - nonamedreturns
     - nosprintfhostport
     - paralleltest
     - prealloc
@@ -131,6 +133,7 @@ linters:
     - staticcheck
     - stylecheck
     - tagliatelle
+    - tagalign
     - tenv
     - testableexamples
     - testpackage
@@ -146,6 +149,7 @@ linters:
     - whitespace
     - wrapcheck
     - wsl
+    - zerologlint
 
 # golangci.com configuration
 # https://github.com/golangci/golangci/wiki/Configuration
