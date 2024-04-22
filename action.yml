@@ -29,12 +29,12 @@ inputs:
 runs:
   using: "composite"
   steps:
-    - uses: actions/checkout@v3
-    - uses: actions/setup-go@v3
+    - uses: actions/checkout@v4
+    - uses: actions/setup-go@v5
       if: ${{ inputs.go-version == 'mod' }}
       with:
         go-version-file: './go.mod'
-    - uses: actions/setup-go@v3
+    - uses: actions/setup-go@v5
       if: ${{ inputs.go-version != 'mod' }}
       with:
         go-version: ${{ inputs.go-version }}
@@ -43,7 +43,7 @@ runs:
       run: eval ${{ inputs.setup-script }}
     - name: golangci-lint
       if: ${{ inputs.skip-lint == 'false' }}
-      uses: golangci/golangci-lint-action@v3
+      uses: golangci/golangci-lint-action@v4
       with:
         version: ${{ inputs.linter-version }}
         args: --config=${{ inputs.linter-config-path }} --timeout=5m
